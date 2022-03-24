@@ -7,7 +7,7 @@
 html{
     font-size: size 14px;
     font-family: 'Titillium web', sans-serif;
-    background-color: rgb(0, 0, 0);
+    background-color: rgb(13, 0, 58);
     color: #FEFEFE
 }
 
@@ -20,8 +20,11 @@ html{
 }
 
 .postRow{
-    margin-top: 20px;
-    margin-left: 20px;
-    background-color: rgb(50, 50, 50);
+}
+
+.postDesc{
+    background-color: rgb(0, 0, 99);
+    padding: 5px;
+    margin: 5px;
 }
 
