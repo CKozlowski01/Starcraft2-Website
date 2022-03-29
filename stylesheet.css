@@ -11,6 +11,13 @@ html{
     color: #FEFEFE
 }
 
+a{
+    color: rgb(255, 0, 0);
+}
+a:active{
+    color: rgb(80, 0, 0);
+}
+
 /*Index.html*/
 
 .title{
@@ -18,16 +25,16 @@ html{
     font-family: 'Times New Roman', Times, serif;
     text-align: center;
 }
+
 .container{
-    margin: 20px;
+    margin-left: 150px;
+    margin-right: 150px;
     padding: 20px;
 }
 
-
 .postDesc{
-    background-color: rgb(0, 0, 99);
-    padding: 5px;
-    margin: 5px;
+    padding: 10px;
+    margin: 10px;
 }
 
 .postRow{
@@ -35,9 +42,15 @@ html{
     grid-template-columns: 10% 70% 20%;
 }
 
-.postColumn{
+.postColumnLight{
     padding: 10px;
-    margin: 4px;
+    margin: 5px;
+    border-radius: 5px;
+    background-color: rgb(0, 0, 155);
+}
+.postColumnDark{
+    padding: 10px;
+    margin: 5px;
     border-radius: 5px;
     background-color: rgb(0, 0, 99);
 }
