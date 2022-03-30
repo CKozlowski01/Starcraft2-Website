@@ -11,6 +11,13 @@ html{
     color: #FEFEFE
 }
 
+button{
+    font-size: size 14px;
+    font-family: 'Titillium web', sans-serif;
+    background-color: rgb(13, 0, 58);
+    color: #FEFEFE
+}
+
 a{
     color: rgb(255, 0, 0);
 }
@@ -18,8 +25,45 @@ a:active{
     color: rgb(80, 0, 0);
 }
 
+.middle{
+    margin-left: 100px;
+    margin-right: 100px;
+}
 /*Index.html*/
 
+.mainRow{
+    float:center;
+
+}
+
+.left{
+    margin: 5px;
+    width: 75%
+}
+
+.right{
+    margin: 5px;
+    width: 25%;
+}
+
+/*Navigation Bar*/
+
+.navBar{
+    margin-left: 150px;
+    margin-right: 150px;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+}
+
+.navColumn{
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    background-color: rgb(0, 0, 99);
+}
+
+/*Posts*/
 .title{
     font-size: 80px;
     font-family: 'Times New Roman', Times, serif;
@@ -27,8 +71,8 @@ a:active{
 }
 
 .container{
-    margin-left: 150px;
-    margin-right: 150px;
+    margin-left: 5px;
+    margin-right: 5px;
     padding: 20px;
 }
 

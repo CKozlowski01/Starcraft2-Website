@@ -2,25 +2,30 @@
 <link rel = "stylesheet" href = "stylesheet.css">
 
 <html>
-    <head>
-
-    </head>
     <title>Build Orders</title>
     <div class = "title">
         Starcraft 2 Build Orders
     </div>
     <body>
         <header>
-            <nav>
-                <ul>
-                    <li>LOGO</li>
-                    <li>REPLAYS</li>
-                    <li>LOGIN</li>
-                </ul>
+            <nav class = "navBar">
+                <button class = "navColumn">
+                    HOME
+                </button>
+                <button class = "navColumn">
+                    GUIDES
+                </button>
+                <button class = "navColumn">
+                    REPLAYS
+                </button>
+                <button class = "navColumn">
+                    LOGIN
+                </button>
             </nav>
-            <h3>Home</h3>
-            <hr>
-            <div class = "container">
+        </header>
+        <hr class = "middle">
+        <div class = "mainRow">
+            <div class = "container left">
                 <div class = "postRow">
                     <div class = "raceIcon postColumnLight">
                         <i class = "terranIcon"></i>
@@ -82,6 +87,11 @@
                     </div>
                 </div>
             </div>
-        </header>
+            <div class = "right">
+                <button>
+                    SEARCH
+                </button>
+            </div>
+        </div>
     </body>
 </html>
