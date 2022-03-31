@@ -29,21 +29,26 @@ a:active{
     margin-left: 100px;
     margin-right: 100px;
 }
+
+input{
+    margin: .4rem;
+}
 /*Index.html*/
 
 .mainRow{
-    float:center;
-
+    display: grid;
+    grid-template-columns: 75% 25%;
 }
 
 .left{
     margin: 5px;
-    width: 75%
 }
 
 .right{
-    margin: 5px;
-    width: 25%;
+    padding: 10px;
+    margin-top: 30px;
+    border-radius: 10px;
+    background-color: rgb(0, 0, 99)
 }
 
 /*Navigation Bar*/
