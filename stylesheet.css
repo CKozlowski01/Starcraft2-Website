@@ -47,7 +47,6 @@ input{
 .right{
     padding: 10px;
     margin-top: 30px;
-    border-radius: 10px;
     background-color: rgb(0, 0, 99)
 }
 
@@ -83,7 +82,6 @@ input{
 
 .postDesc{
     padding: 10px;
-    margin: 10px;
 }
 
 .postRow{
@@ -93,13 +91,17 @@ input{
 
 .postColumnLight{
     padding: 10px;
-    margin: 5px;
-    border-radius: 5px;
     background-color: rgb(0, 0, 155);
+    border-bottom: solid white;
+    border-top: solid white;
+    border-width: 1px;
 }
 .postColumnDark{
     padding: 10px;
-    margin: 5px;
-    border-radius: 5px;
     background-color: rgb(0, 0, 99);
+    border-bottom: solid white;
+    border-top: solid white;
+    border-width: 1px;
 }
+
+/*post.html*/
