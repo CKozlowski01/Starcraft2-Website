@@ -86,7 +86,7 @@ input{
 
 .postRow{
     display: grid;
-    grid-template-columns: 10% 70% 20%;
+    grid-template-columns: 4% 76% 20%;
 }
 
 .postColumnLight{
