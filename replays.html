@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<link rel = "stylesheet" href = "stylesheet.css">
+<link rel = "upload" href = "upload.php">
+<html>
+    <title>Build Orders</title>
+    <div class = "title">
+        Starcraft 2 Build Orders
+    </div>
+    <body>
+        <header>
+            <nav class = "navBar">
+                <button onClick = "homeBtn()" class = "navColumn">
+                    HOME
+                </button>
+                <button class = "navColumn">
+                    GUIDES
+                </button>
+                <button onClick = "replaysBtn()" class = "navColumn">
+                    REPLAYS
+                </button>
+                <button class = "navColumn">
+                    LOGIN
+                </button>
+            </nav>
+        </header>
+        <hr class = "middle">
+        <div class = "middle">
+            <form action = "upload.php" method = "POST" enctype = "multipart/form-data">
+                <input type = "file" name = "file">
+                <button type = "submit" name = "submit">UPLOAD</button>
+            </form>
+        </div>
+    <script src = "scripts.js"></script>
+    </body>
+</html>

@@ -7,8 +7,6 @@ import argparse
 
 from spawningtool.exception import CutoffTimeError, ReplayFormatError
 from spawningtool.parser import parse_replay
-import spawningtool.parser
-spawningtool.parser.parse_replay('C:\Users\tatam\Desktop\spawningtool-master\replays')
 
 
 def print_player_header(player):
