@@ -3,7 +3,7 @@ if (isset($_POST['submit'])){
     $file = $_FILES['file'];
 
     $fileName = $_FILES['file']['name'];
-    $fileTmpName = $_FILES['file']['temp_name'];
+    $fileTmpName = $_FILES['file']['tmp_name'];
     $fileSize = $_FILES['file']['size'];
     $fileError = $_FILES['file']['error'];
     $fileType = $_FILES['file']['type'];
@@ -18,7 +18,7 @@ if (isset($_POST['submit'])){
             $fileNameNew = uniqid('', true).".".$fileActualExt;
             $fileDestination = 'replays/'.$fileNameNew;
             move_uploaded_file($fileTmpName, $fileDestination);
-            //header("Location: replay.html?successfulUpload")
+            header("Location: replays.html?successfulUpload");
         }
         else{
             echo "ERROR";
@@ -26,5 +26,5 @@ if (isset($_POST['submit'])){
     }
     else{
         echo "You can ONLY upload '.SC2Replay' files";
-    }
+    }   
 }
