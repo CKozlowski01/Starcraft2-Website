@@ -3,6 +3,7 @@ import json
 from werkzeug.utils import secure_filename
 from flask import Flask, flash, render_template, redirect, url_for, request
 
+jsonFile = 'C:/xampp/htdocs/Starcraft2-Website/spawningtool/static/buildOrder.json'
 UPLOAD_FOLDER = 'C:/xampp/htdocs/Starcraft2-Website/replays'
 ALLOWED_EXTENSIONS = {'sc2replay'}
 
@@ -16,6 +17,13 @@ import spawningtool.parser
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+def buildToJson(replayFile):
+    if (os.path.exists(jsonFile)):
+        os.remove('C:/xampp/htdocs/Starcraft2-Website/spawningtool/static/buildOrder.json')
+    with open('C:/xampp/htdocs/Starcraft2-Website/spawningtool/static/buildOrder.json', 'w') as f:
+        json.dump(replayFile, f)
+            
 
 @app.route('/upload.html', methods=['GET', 'POST'])
 def upload_file():
@@ -33,9 +41,9 @@ def upload_file():
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            parsedReplay = spawningtool.parser.parse_replay('C:/Users/tatam/Desktop/Website/Starcraft2-Website/spawningtool/{}'.format(filename))
-            x = json.dumps(parsedReplay)
-            return (x)
+            parsedReplay = spawningtool.parser.parse_replay('C:/xampp/htdocs/Starcraft2-Website/replays/{}'.format(filename))
+            buildToJson(parsedReplay)
+            return redirect('replays.html')
     return
 
 @app.route('/')

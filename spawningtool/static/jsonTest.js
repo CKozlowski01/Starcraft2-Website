@@ -9,7 +9,7 @@
     console.log;
 })*/
 
-fetch('../static/test.json')
+fetch('../static/buildOrder.json')
    .then(response => {
        if (!response.ok) {
            throw new Error("HTTP error " + response.status);
@@ -17,7 +17,8 @@ fetch('../static/test.json')
        return response.json();
    })
    .then(json => {
-       console.log(json.players.5.buildOrder.0.name);
+       console.log(json.players);
+       //json.players.5.buildOrder.0.name
    })
    .catch(function () {
        this.dataError = true;
