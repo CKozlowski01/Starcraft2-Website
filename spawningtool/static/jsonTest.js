@@ -1,25 +1,22 @@
-/*fetch("upload.html").then(response => response.json()).then(data =>{
-    console.log(data)
-})*/
+    var ele = document.getElementById('sel');
+    var order = document.getElementById('order');
 
-/*fetch("C:/xampp/htdocs/Starcraft2-Website/test").then(response => {
-    if (!response.ok) {
-        throw new Error("HTTP error " + response.status);
-    }
-    console.log;
-})*/
-
-fetch('../static/buildOrder.json')
+    fetch('../static/buildOrder.json')
    .then(response => {
        if (!response.ok) {
            throw new Error("HTTP error " + response.status);
        }
        return response.json();
    })
-   .then(json => {
-       console.log(json.players);
-       //json.players.5.buildOrder.0.name
+   .then(json => json.players).then(json => {
+        for (var key in json){
+            ele.innerHTML = ele.innerHTML +
+                '<option value="' + json[key]['name'] + '">' + json[key]['name'] + '</option>';
+            console.log('<option value="' + json[key]['name'] + json[key]['name'] + '">' + '</option>')
+            console.log(json[key]);
+        }
    })
    .catch(function () {
        this.dataError = true;
    })
+   //}

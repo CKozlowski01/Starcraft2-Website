@@ -43,7 +43,7 @@ def upload_file():
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             parsedReplay = spawningtool.parser.parse_replay('C:/xampp/htdocs/Starcraft2-Website/replays/{}'.format(filename))
             buildToJson(parsedReplay)
-            return redirect('replays.html')
+            return redirect('replaysUpload.html')
     return
 
 @app.route('/')
@@ -62,6 +62,9 @@ def replays():
 def post():
     return render_template ('post.html')
 
+@app.route('/replaysUpload.html')
+def replaysUpload():
+    return render_template ('replaysUpload.html')
 
 @app.route('/uploader', methods = ['GET', 'POST'])
 def upload_file2():

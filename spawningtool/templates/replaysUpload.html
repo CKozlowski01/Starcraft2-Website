@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<link rel = "stylesheet" href = "{{ url_for('static',filename='styles/stylesheet.css') }}">
+<html>
+    <title>Build Orders</title>
+    <div class = "title">
+        Starcraft 2 Build Orders
+    </div>
+    <body>
+        <header>
+            <nav class = "navBar">
+                <button onClick = "homeBtn()" class = "navColumn">
+                    HOME
+                </button>
+                <button class = "navColumn">
+                    GUIDES
+                </button>
+                <button onClick = "replayBtn()" class = "navColumn">
+                    REPLAYS
+                </button>
+                <button class = "navColumn">
+                    LOGIN
+                </button>
+            </nav>
+        </header>
+        <hr class = "middle">
+        <div class = "middle" id = "hide">
+            <select id="sel">
+                <option value="">-- Select --</option>
+            </select>
+            <button onClick = "order" type = "button" name = "confirm" id = "confirm">CONFIRM</button>
+            </form>
+        </div>
+        <div class = "middleShow" id = "show">
+            <div>
+                <p><label for="titleInput">Post Title:</label></p>
+
+                <textarea id="titleInput" name="titleInput" rows="2" cols="50"></textarea>
+            </div>
+            <div>
+                <p><label for="descInput">Post Description:</label></p>
+
+                <textarea id="descInput" name="descInput" rows="5" cols="50"></textarea>
+            </div>
+            <div>
+                <p><label for="videoInput">Video Link:</label></p>
+
+                <textarea id="videoInput" name="videoInput" rows="1" cols="50"></textarea>
+            </div>
+            <div>
+                <p id = "order">BUILD ORDER GOES HERE</p>
+            </div>
+        </div>
+    </body>
+    <script src = "{{url_for('static', filename='scripts.js')}}"></script>
+    <script src = "{{url_for('static', filename='jsonTest.js')}}"></script>
+</html>
