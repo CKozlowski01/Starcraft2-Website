@@ -23,14 +23,14 @@
             </nav>
         </header>
         <hr class = "middle">
-        <div class = "middle" id = "hide">
+        <div class = "middle" id = "hide" style = "display: block">
             <select id="sel">
                 <option value="">-- Select --</option>
             </select>
-            <button onClick = "order" type = "button" name = "confirm" id = "confirm">CONFIRM</button>
+            <button type = "button" name = "confirm" id = "confirm" onClick = "order()">CONFIRM</button>
             </form>
         </div>
-        <div class = "middleShow" id = "show">
+        <div class = "middleShow" id = "show" style = "display: none">
             <div>
                 <p><label for="titleInput">Post Title:</label></p>
 
@@ -46,11 +46,9 @@
 
                 <textarea id="videoInput" name="videoInput" rows="1" cols="50"></textarea>
             </div>
-            <div>
-                <p id = "order">BUILD ORDER GOES HERE</p>
+            <div id = "order">
             </div>
         </div>
     </body>
     <script src = "{{url_for('static', filename='scripts.js')}}"></script>
-    <script src = "{{url_for('static', filename='jsonTest.js')}}"></script>
 </html>
