@@ -35,6 +35,7 @@ btn.onclick = function () {
   for (var key in json){
     if(json[key].name == selection){
       for (i = 0; i < json[key].buildOrder.length; i++){
+      //for (i = 0; i < 20; i++){
         time = (json[key].buildOrder[i].time);
         unit = (json[key].buildOrder[i].name);
         supply = (json[key].buildOrder[i].supply);

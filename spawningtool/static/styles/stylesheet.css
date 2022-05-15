@@ -34,6 +34,10 @@ a:active{
 input{
     margin: .4rem;
 }
+
+textarea {
+    resize: none;
+}
 /*Index.html*/
 
 .mainRow{
@@ -111,4 +115,8 @@ input{
     margin-left: 100px;
     margin-right: 100px;
     display: none;
+}
+
+.buildOrder{
+    margin-top: 20px;
 }

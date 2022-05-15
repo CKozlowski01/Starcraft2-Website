@@ -2,17 +2,31 @@ import os
 import json
 from werkzeug.utils import secure_filename
 from flask import Flask, flash, render_template, redirect, url_for, request
+from flask_sqlalchemy import SQLAlchemy
+import spawningtool.parser
 
 jsonFile = 'C:/xampp/htdocs/Starcraft2-Website/spawningtool/static/buildOrder.json'
 UPLOAD_FOLDER = 'C:/xampp/htdocs/Starcraft2-Website/replays'
 ALLOWED_EXTENSIONS = {'sc2replay'}
 
 app = Flask(__name__)
-
-app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///posts.sqlite3'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-import spawningtool.parser
+db = SQLAlchemy(app)
+
+class posts(db.model):
+    _id = db.column("id", db.Integer, primary_key = True)
+    title = db.column(db.String(200))
+    desc = db.column(db.String(750))
+    link = db.column(db.String(250))
+    build = db.column(db.String(750))
+
+    def __init__(self, title, desc, build):
+        self.title = title
+        self.desc = desc
+        self.build = build
 
 def allowed_file(filename):
     return '.' in filename and \
