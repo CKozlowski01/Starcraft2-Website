@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<link rel = "stylesheet" href = "{{ url_for('static',filename='styles/stylesheet.css') }}">
+<html>
+    <title>Build Orders</title>
+    <div class = "title">
+        Starcraft 2 Build Orders
+    </div>
+    <body>
+        <header>
+            <nav class = "navBar">
+                <button onClick = "homeBtn()" class = "navColumn">
+                    HOME
+                </button>
+                <button class = "navColumn">
+                    GUIDES
+                </button>
+                <button onClick = "replayBtn()" class = "navColumn">
+                    REPLAYS
+                </button>
+                <button class = "navColumn">
+                    LOGIN
+                </button>
+            </nav>
+        </header>
+        <hr class = "middle">
+        <div class = "middle" id = "hide" style = "display: block">
+        </div>
+    </body>
+    <script src = "{{url_for('static', filename='scripts.js')}}"></script>
+</html>
