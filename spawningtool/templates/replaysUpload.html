@@ -29,23 +29,23 @@
             </select>
             <button type = "button" name = "confirm" id = "confirm" onClick = "order()">CONFIRM</button>
         </div>
-        <form action = '#' method = 'post' class = "middleShow" id = "show" style = "display: none">
+        <form action = "#" method = 'POST' class = "middleShow" id = "show" style = "display: none">
             <div>
                 <p><label for="titleInput">Post Title:</label></p>
 
-                <textarea id="titleInput" name="titleInput" rows="2" cols="50"></textarea>
+                <textarea id="titleInput" name="titleInput" value = "{{titleInput if titleInput}}" rows="2" cols="50"></textarea>
             </div>
             <div>
                 <p><label for="descInput">Post Description:</label></p>
 
-                <textarea id="descInput" name="descInput" rows="5" cols="50"></textarea>
+                <textarea id="descInput" name="descInput" value = "{{descInput if descInput}}" rows="5" cols="50"></textarea>
             </div>
             <div>
                 <p><label for="videoInput">Video Link:</label></p>
 
-                <textarea id="videoInput" name="videoInput" rows="1" cols="50"></textarea>
+                <textarea id="videoInput" name="videoInput" value = "{{videoInput if videoInput}}" rows="1" cols="50"></textarea>
             </div>
-            <div class = "buildOrder" id = "order">
+            <div class = "buildOrderLbl" id = "order">
                 <label>Build Order:</label>
             </div>
             <div class = "buildOrder">

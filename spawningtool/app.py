@@ -2,8 +2,12 @@ import os
 import json
 import re
 from werkzeug.utils import secure_filename
-from flask import Flask, flash, render_template, redirect, url_for, request
+from flask import Flask, flash, render_template, redirect, url_for, request, session
 from flask_sqlalchemy import SQLAlchemy
+from flask_wtf import FlaskForm
+from wtforms import StringField
+from wtforms.validators import DataRequired
+from wtforms.fields import SubmitField
 import spawningtool.parser
 
 jsonFile = 'C:/xampp/htdocs/Starcraft2-Website/spawningtool/static/buildOrder.json'
@@ -21,13 +25,21 @@ class posts(db.Model):
     _id = db.Column("id", db.Integer, primary_key = True)
     title = db.Column(db.String(200))
     desc = db.Column(db.String(750))
-    link = db.Column(db.String(250))
-    build = db.Column(db.String(750))
+    #link = db.Column(db.String(250))
+    #build = db.Column(db.String(750), nullable = False)
 
-    def __init__(self, title, desc, build):
+    def __init__(self, title, desc): #build):
         self.title = title
         self.desc = desc
-        self.build = build
+        #self.build = build
+
+db.create_all()
+
+class buildForm(FlaskForm):
+    title = StringField('title', validator = [DataRequired])
+    desc = StringField('desc', validator = [DataRequired])
+    submit = SubmitField('submit')
+    
 
 def allowed_file(filename):
     return '.' in filename and \
@@ -38,7 +50,6 @@ def buildToJson(replayFile):
         os.remove('C:/xampp/htdocs/Starcraft2-Website/spawningtool/static/buildOrder.json')
     with open('C:/xampp/htdocs/Starcraft2-Website/spawningtool/static/buildOrder.json', 'w') as f:
         json.dump(replayFile, f)
-            
 
 @app.route('/upload.html', methods=['GET', 'POST'])
 def upload_file():
@@ -67,24 +78,7 @@ def index():
 
 @app.route('/index.html', methods = ['GET', 'POST'])
 def home():
-    if request.form['submit'] == 'submit':
-        title = request.form['titleInput']
-        title = posts(title)
-        desc = request.form['descInput']
-        desc = posts(desc)
-        video = request.form['videoInput']
-        video = posts(video)
-        build = request.form['buildOrder']
-        build = posts(build)
-        db.session.add(title)
-        db.session.add(desc)
-        db.session.add(video)
-        db.session.add(build)
-        return render_template ('index.html')
-    else:
-        #flash("ERROR")
-        return render_template('replaysUpload.html')
-    #return render_template ('index.html')
+    return render_template ('index.html')
 
 @app.route('/replays.html', methods = ['GET'])
 def replays():
@@ -96,7 +90,16 @@ def post():
 
 @app.route('/replaysUpload.html', methods = ['GET', 'POST'])
 def replaysUpload():
-    return render_template ('replaysUpload.html')
+    #forms = buildForm()
+    if request.method == "POST":
+        title = request.form["titleInput"]
+        desc = request.form["descInput"]
+        pst = posts(title, desc)
+        db.session.add(pst)
+        db.session.commit()
+        return render_template("index.html")
+    else:
+        return render_template ('replaysUpload.html')
 
 @app.route('/uploader', methods = ['GET', 'POST'])
 def upload_file2():
@@ -115,4 +118,36 @@ def view():
     return render_template("view.html", values = posts.query.all())
     
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
+
+#    if request.method == 'POST':
+#        title = request.form['titleInput']
+#        title = posts(title)
+#        desc = request.form['descInput']
+#        desc = posts(desc)
+#        video = request.form['videoInput']
+#        video = posts(video)
+#        #build = request.form['buildOrder']
+#        #build = posts(build)
+#        db.session.add(title)
+#        db.session.add(desc)
+#        db.session.add(video)
+#        #db.session.add(build)
+#        return render_template ('index.html')
+#    else:
+#        #flash("ERROR")
+#        return render_template ('index.html')
+
+#
+#    if request.method == 'POST':
+#      if not request.form['titleInput'] or not request.form['descInput']:
+#         flash('Please enter all the fields', 'error')
+#      else:
+#         values = posts(request.form['titleInput'], request.form['descInput'], request.form['videoInput'])
+#         
+#         db.session.add(values)
+#         db.session.commit()
+#         
+#         flash('Record was successfully added')
+#         return redirect(url_for('view.html'))
+#

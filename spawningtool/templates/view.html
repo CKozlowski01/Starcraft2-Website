@@ -23,7 +23,10 @@
             </nav>
         </header>
         <hr class = "middle">
-        <div class = "middle" id = "hide" style = "display: block">
+        <div class = "middle">
+            {% for item in values %}
+                <p>Title: {{item.title}}, Description: {{item.desc}}</p>
+            {% endfor %}
         </div>
     </body>
     <script src = "{{url_for('static', filename='scripts.js')}}"></script>
