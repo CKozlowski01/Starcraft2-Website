@@ -9,7 +9,13 @@ function replayBtn() {
 var hide = document.getElementById("hide");
 var show = document.getElementById("show");
 var btn = document.getElementById("confirm");
-  
+
+href.onclick = e => {
+  hrefTitle = e.target.innerHTML;
+  //document.location.href = "replays.html"
+}
+
+
 btn.onclick = function () {
   if (hide.style.display === "block") {
     hide.style.display = "none";

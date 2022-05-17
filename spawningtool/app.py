@@ -76,9 +76,9 @@ def upload_file():
 def index():
     return render_template ('index.html')
 
-@app.route('/index.html', methods = ['GET', 'POST'])
+@app.route('/index.html',  methods = ['GET', 'POST'])
 def home():
-    return render_template ('index.html')
+    return render_template ('index.html', values = posts.query.all())
 
 @app.route('/replays.html', methods = ['GET'])
 def replays():

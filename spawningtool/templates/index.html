@@ -27,6 +27,18 @@
         <div class = "mainRow">
             <div class = "container left">
                 <div class = "postRow">
+                    {%for item in values%}
+                        <div class = "raceIcon postColumnLight">
+                            <img src = "terranWhite.png" width = "20" height = "20">
+                        </div>
+                        <div id = "{{item.id}}" class = "postDesc postColumnLight">
+                            <a href = "post.html">{{item.title}}</a>
+                            <p class = "postDesc">{{item.desc}}</p>
+                        </div>
+                        <div class = "postLikes postColumnLight">
+                            <span style = "color:rgb(64, 175, 64)">34 Likes</span> | <span style = "color:red">14 Dislikes</span>
+                        </div>
+                    {%endfor%}
                     <div class = "raceIcon postColumnLight">
                         <img src = "terranWhite.png" width = "20" height = "20">
                     </div>
