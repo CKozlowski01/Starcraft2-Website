@@ -10,12 +10,6 @@ var hide = document.getElementById("hide");
 var show = document.getElementById("show");
 var btn = document.getElementById("confirm");
 
-href.onclick = e => {
-  hrefTitle = e.target.innerHTML;
-  //document.location.href = "replays.html"
-}
-
-
 btn.onclick = function () {
   if (hide.style.display === "block") {
     hide.style.display = "none";
@@ -38,6 +32,7 @@ btn.onclick = function () {
 })
 .then(json => json.players).then(json => {
   var build = document.getElementById("order");
+  var hiddenBuild = document.getElementById("hiddenBuild")
   for (var key in json){
     if(json[key].name == selection){
       for (i = 0; i < json[key].buildOrder.length; i++){
@@ -45,13 +40,8 @@ btn.onclick = function () {
         time = (json[key].buildOrder[i].time);
         unit = (json[key].buildOrder[i].name);
         supply = (json[key].buildOrder[i].supply);
+        hiddenBuild.value += time + " " + unit + " " + supply + ", ";
         build.innerHTML = build.innerHTML + "<li>" + time + " " + unit + " " + supply + "</li>";
-        //build = build + "\n" + time + " " + unit + " " + supply;
-        //var div = document.createElement("h2");
-        //div.innerHTML = innerHTML + time + " " + unit + " " + supply + "\n";
-        //var build = time + " " + unit + " " + supply + "\n";
-        //document.getElementById("order").value = build;
-        //document.getElementById("order").innerHTML = innerHTML + time + " " + unit + " " + supply + "\n";
       }
       //document.getElementById("order").innerHTML = build;
       //console.log(json[key].buildOrder.length);
@@ -59,6 +49,7 @@ btn.onclick = function () {
     else{
       console.log("hello")
     }
+    //request.send('hiddenBuild = ' + hiddenBuild.innerHTML)
   }
 })
 //.then(json => json.players[selection])

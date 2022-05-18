@@ -31,8 +31,8 @@
                         <div class = "raceIcon postColumnLight">
                             <img src = "terranWhite.png" width = "20" height = "20">
                         </div>
-                        <div id = "{{item.id}}" class = "postDesc postColumnLight">
-                            <a href = "post.html">{{item.title}}</a>
+                        <div class = "postDesc postColumnLight">
+                            <a href = "{{url_for('post', post_id=item._id)}}">{{item.title}}</a>
                             <p class = "postDesc">{{item.desc}}</p>
                         </div>
                         <div class = "postLikes postColumnLight">

@@ -1,3 +1,4 @@
+from distutils.log import debug
 import os
 import json
 import re
@@ -10,6 +11,7 @@ from wtforms.validators import DataRequired
 from wtforms.fields import SubmitField
 import spawningtool.parser
 
+FLASK_ENV = debug
 jsonFile = 'C:/xampp/htdocs/Starcraft2-Website/spawningtool/static/buildOrder.json'
 UPLOAD_FOLDER = 'C:/xampp/htdocs/Starcraft2-Website/replays'
 ALLOWED_EXTENSIONS = {'sc2replay'}
@@ -23,15 +25,16 @@ db = SQLAlchemy(app)
 
 class posts(db.Model):
     _id = db.Column("id", db.Integer, primary_key = True)
-    title = db.Column(db.String(200))
-    desc = db.Column(db.String(750))
-    #link = db.Column(db.String(250))
-    #build = db.Column(db.String(750), nullable = False)
+    title = db.Column(db.String(200), nullable = False)
+    desc = db.Column(db.String(750), nullable = False)
+    link = db.Column(db.String(250), nullable = True)
+    build = db.Column(db.String(10000), nullable = False)
 
-    def __init__(self, title, desc): #build):
+    def __init__(self, title, desc, link, build):
         self.title = title
         self.desc = desc
-        #self.build = build
+        self.link = link
+        self.build = build
 
 db.create_all()
 
@@ -74,7 +77,7 @@ def upload_file():
 
 @app.route('/')
 def index():
-    return render_template ('index.html')
+    return render_template ('index.html', values = posts.query.all())
 
 @app.route('/index.html',  methods = ['GET', 'POST'])
 def home():
@@ -84,9 +87,10 @@ def home():
 def replays():
     return render_template ('replays.html')
 
-@app.route('/post.html')
-def post():
-    return render_template ('post.html')
+@app.route('/post.html/<int:post_id>', methods = ['GET'])
+def post(post_id):
+    post = posts.query.get(post_id)
+    return render_template ('post.html', title = post.title, post = post)
 
 @app.route('/replaysUpload.html', methods = ['GET', 'POST'])
 def replaysUpload():
@@ -94,7 +98,10 @@ def replaysUpload():
     if request.method == "POST":
         title = request.form["titleInput"]
         desc = request.form["descInput"]
-        pst = posts(title, desc)
+        link = request.form["videoInput"]
+        build = request.form["hiddenBuild"]
+        print(build)
+        pst = posts(title, desc, link, build)
         db.session.add(pst)
         db.session.commit()
         return render_template("index.html")
