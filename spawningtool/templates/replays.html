@@ -11,20 +11,15 @@
                 <button onClick = "homeBtn()" class = "navColumn">
                     HOME
                 </button>
-                <button class = "navColumn">
-                    GUIDES
-                </button>
                 <button onClick = "replayBtn()" class = "navColumn">
-                    REPLAYS
-                </button>
-                <button class = "navColumn">
-                    LOGIN
+                    BUILD
                 </button>
             </nav>
         </header>
         <hr class = "middle">
-        <div class = "middle">
-            <form action = "{{url_for('upload_file')}}" method = "POST" enctype = "multipart/form-data">
+        <div class = "middle main">
+            <form class = "middle" action = "{{url_for('upload_file')}}" method = "POST" enctype = "multipart/form-data">
+                <label>Upload .SC2Replay File:</label>
                 <input type = "file" name = "file">
                 <button type = "submit" name = "submit" id="submit">UPLOAD</button>
             </form>

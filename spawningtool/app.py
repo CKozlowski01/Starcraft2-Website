@@ -29,12 +29,14 @@ class posts(db.Model):
     desc = db.Column(db.String(750), nullable = False)
     link = db.Column(db.String(250), nullable = True)
     build = db.Column(db.String(10000), nullable = False)
+    race = db.Column(db.String(10), nullable = False)
 
-    def __init__(self, title, desc, link, build):
+    def __init__(self, title, desc, link, build, race):
         self.title = title
         self.desc = desc
         self.link = link
         self.build = build
+        self.race = race
 
 db.create_all()
 
@@ -100,18 +102,17 @@ def replaysUpload():
         desc = request.form["descInput"]
         link = request.form["videoInput"]
         build = request.form["hiddenBuild"]
-        print(build)
-        pst = posts(title, desc, link, build)
+        race = request.form["raceInput"]
+        pst = posts(title, desc, link, build, race)
         db.session.add(pst)
         db.session.commit()
-        return render_template("index.html")
+        return redirect("index.html")
     else:
-        return render_template ('replaysUpload.html')
+        return render_template ("replaysUpload.html")
 
 @app.route('/uploader', methods = ['GET', 'POST'])
 def upload_file2():
    if request.method == 'POST':
-       #projectpath = request.form['file']
        f = request.files['file']
        f.save(secure_filename(f.filename))
        return 'file uploaded successfully'
@@ -126,35 +127,3 @@ def view():
     
 if __name__ == "__main__":
     app.run(debug=True)
-
-#    if request.method == 'POST':
-#        title = request.form['titleInput']
-#        title = posts(title)
-#        desc = request.form['descInput']
-#        desc = posts(desc)
-#        video = request.form['videoInput']
-#        video = posts(video)
-#        #build = request.form['buildOrder']
-#        #build = posts(build)
-#        db.session.add(title)
-#        db.session.add(desc)
-#        db.session.add(video)
-#        #db.session.add(build)
-#        return render_template ('index.html')
-#    else:
-#        #flash("ERROR")
-#        return render_template ('index.html')
-
-#
-#    if request.method == 'POST':
-#      if not request.form['titleInput'] or not request.form['descInput']:
-#         flash('Please enter all the fields', 'error')
-#      else:
-#         values = posts(request.form['titleInput'], request.form['descInput'], request.form['videoInput'])
-#         
-#         db.session.add(values)
-#         db.session.commit()
-#         
-#         flash('Record was successfully added')
-#         return redirect(url_for('view.html'))
-#

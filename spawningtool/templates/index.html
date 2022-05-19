@@ -12,112 +12,34 @@
                 <button onClick = "homeBtn()" class = "navColumn">
                     HOME
                 </button>
-                <button class = "navColumn">
-                    GUIDES
-                </button>
                 <button onClick = "replayBtn()" class = "navColumn">
-                    REPLAYS
-                </button>
-                <button class = "navColumn">
-                    LOGIN
+                    BUILD
                 </button>
             </nav>
         </header>
         <hr class = "middle">
         <div class = "mainRow">
-            <div class = "container left">
+            <div class = "middle">
                 <div class = "postRow">
                     {%for item in values%}
                         <div class = "raceIcon postColumnLight">
-                            <img src = "terranWhite.png" width = "20" height = "20">
+                        {%if item.race == 'Zerg' %}
+                            <img src = "{{url_for('static', filename='zergWhite.png')}}" width = "50" height = "50">
+                        {%elif item.race == 'Terran' %}
+                            <img src = "{{url_for('static', filename='terranWhite.png')}}" width = "50" height = "50">
+                        {%else%}
+                            <img src = "{{url_for('static', filename='protossWhite.png')}}" width = "50" height = "50">
+                        {%endif%}
                         </div>
                         <div class = "postDesc postColumnLight">
-                            <a href = "{{url_for('post', post_id=item._id)}}">{{item.title}}</a>
-                            <p class = "postDesc">{{item.desc}}</p>
+                            <a class = "postDesc" href = "{{url_for('post', post_id=item._id)}}">{{item.title}}</a>
                         </div>
-                        <div class = "postLikes postColumnLight">
-                            <span style = "color:rgb(64, 175, 64)">34 Likes</span> | <span style = "color:red">14 Dislikes</span>
+                        <div class = "postDesc postColumnLight">
+                            <label>Description:</label>
+                            <p>{{item.desc}}</p>
                         </div>
                     {%endfor%}
-                    <div class = "raceIcon postColumnLight">
-                        <img src = "terranWhite.png" width = "20" height = "20">
-                    </div>
-                    <div class = "postDesc postColumnLight">
-                        <a href = "post.html">Post Title</a>
-                        <p class = "postDesc">Short post description</p>
-                    </div>
-                    <div class = "postLikes postColumnLight">
-                        <span style = "color:rgb(64, 175, 64)">34 Likes</span> | <span style = "color:red">14 Dislikes</span>
-                    </div>
-                    <div class = "raceIcon postColumnDark">
-                        <img src = "protossWhite.png" width = "14" height = "20">
-                    </div>
-                    <div class = "postDesc postColumnDark">
-                        <a href = "">Post Title</a>
-                    </div>
-                    <div class = "postLikes postColumnDark">
-                        <span style = "color:rgb(64, 175, 64)">34 Likes</span> | <span style = "color:red">14 Dislikes</span>
-                    </div>
-                    <div class = "raceIcon postColumnLight">
-                        <img src = "protossWhite.png" width = "14" height = "20">
-                    </div>
-                    <div class = "postDesc postColumnLight">
-                        <a href = "">Post Title</a>
-                    </div>
-                    <div class = "postLikes postColumnLight">
-                        <span style = "color:rgb(64, 175, 64)">34 Likes</span> | <span style = "color:red">14 Dislikes</span>
-                    </div>
-                    <div class = "raceIcon postColumnDark">
-                        <img src = "zergWhite.png" width = "20" height = "20">
-                    </div>
-                    <div class = "postDesc postColumnDark">
-                        <a href = "">Post Title</a>
-                    </div>
-                    <div class = "postLikes postColumnDark">
-                        <span style = "color:rgb(64, 175, 64)">34 Likes</span> | <span style = "color:red">14 Dislikes</span>
-                    </div>
-                    <div class = "raceIcon postColumnLight">
-                        <img src = "terranWhite.png" width = "20" height = "20"></i>
-                    </div>
-                    <div class = "postDesc postColumnLight">
-                        <a href = "">Post Title</a>
-                        <p>Short build order description</p>
-                        Post by <a href = "">CeleryK</a>
-                    </div>
-                    <div class = "postLikes postColumnLight">
-                        <p><span style = "color:rgb(64, 175, 64)">34 Likes</span> | <span style = "color:red">14 Dislikes</span></p>
-                    </div>
-                    <div class = "raceIcon postColumnDark">
-                        <i class = "terranIcon"></i>
-                    </div>
-                    <div class = "postDesc postColumnDark">
-                        <a href = "">Post Title</a>
-                        <p>Short build order description</p>
-                        Post by <a href = "">CeleryK</a>
-                    </div>
-                    <div class = "postLikes postColumnDark">
-                        <p><span style = "color:rgb(64, 175, 64)">34 Likes</span> | <span style = "color:red">14 Dislikes</span></p>
-                    </div>
                 </div>
-            </div>
-            <div class = "container right">
-                <input type = "text" name = "q" id = "" placeholder= "Search...">
-                <button>
-                    SEARCH
-                </button>
-                <div>
-                    <input type = "checkbox" name = "q" id = "terran" name = "Terran">
-                    <label for = "terran">Terran</label>
-                </div>
-                <div>
-                    <input type = "checkbox" name = "q" id = "zerg" name = "Zerg">
-                    <label for = "zerg">Zerg</label>
-                </div>
-                <div>
-                    <input type = "checkbox" name = "q" id = "protoss" name = "Protoss">
-                    <label for = "protoss">Protoss</label>
-                </div>
-
             </div>
         </div>
         <script src = "{{url_for('static', filename='scripts.js')}}"></script>

@@ -3,7 +3,7 @@ function homeBtn() {
 }
 
 function replayBtn() {
-  document.location.href = "replays.html";
+  window.location.href = "replays.html";
 }
 
 var hide = document.getElementById("hide");
@@ -33,8 +33,10 @@ btn.onclick = function () {
 .then(json => json.players).then(json => {
   var build = document.getElementById("order");
   var hiddenBuild = document.getElementById("hiddenBuild")
+  var race = document.getElementById("raceInput")
   for (var key in json){
     if(json[key].name == selection){
+      raceValue = (json[key].pick_race)
       for (i = 0; i < json[key].buildOrder.length; i++){
       //for (i = 0; i < 20; i++){
         time = (json[key].buildOrder[i].time);
@@ -42,6 +44,7 @@ btn.onclick = function () {
         supply = (json[key].buildOrder[i].supply);
         hiddenBuild.value += time + " " + unit + " " + supply + ", ";
         build.innerHTML = build.innerHTML + "<li>" + time + " " + unit + " " + supply + "</li>";
+        race.value = raceValue
       }
       //document.getElementById("order").innerHTML = build;
       //console.log(json[key].buildOrder.length);
@@ -49,6 +52,8 @@ btn.onclick = function () {
     else{
       console.log("hello")
     }
+    console.log(hiddenBuild.value)
+    console.log(raceValue)
     //request.send('hiddenBuild = ' + hiddenBuild.innerHTML)
   }
 })
