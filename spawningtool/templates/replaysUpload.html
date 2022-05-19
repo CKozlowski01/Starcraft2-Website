@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<link rel = "stylesheet" href = "{{ url_for('static',filename='styles/stylesheet.css') }}">
+<html>
+    <title>Build Orders</title>
+    <div class = "title">
+        Starcraft 2 Build Orders
+    </div>
+    <body>
+        <header>
+            <nav class = "navBar">
+                <button onClick = "homeBtn()" class = "navColumn">
+                    HOME
+                </button>
+                <button onClick = "replayBtn()" class = "navColumn">
+                    BUILD
+                </button>
+            </nav>
+        </header>
+        <hr class = "middle">
+        <div class = "middle main" id = "hide" style = "display: block">
+            <label>Select Player: </label>
+            <select id="sel">
+                <option value="">-- Select --</option>
+            </select>
+            <button type = "button" name = "confirm" id = "confirm" onClick = "order()">CONFIRM</button>
+        </div>
+        <form action = "#" method = 'POST' class = "middleShow" id = "show" style = "display: none">
+            <div class = "columnDiv">
+                <div class = "navColumn">
+                    <p><label for="titleInput">Post Title:</label></p>
+                    <br>
+                    <textarea id="titleInput" name="titleInput" value = "{{titleInput if titleInput}}" rows="2" cols="50" required = "required"></textarea>
+                    <br>
+                    <p><label for="descInput">Post Description:</label></p>
+                    <br>
+                    <textarea id="descInput" name="descInput" value = "{{descInput if descInput}}" rows="5" cols="50" required = "required"></textarea>
+                    <br>
+                    <p><label for="videoInput">Video Link (Optional):</label></p>
+                    <br>
+                    <textarea id="videoInput" name="videoInput" value = "{{videoInput if videoInput}}" rows="1" cols="50"></textarea>
+                    <br>
+                    <input type = "submit" name = 'submit' value = "submit"></input>
+                </div>
+                <div class = "navColumn" id = "order">
+                </div>
+                <input type = "text" value = "{{hiddenBuild if hiddenBuild}}" id = "hiddenBuild" name = "hiddenBuild" style = "display: none;"></input>
+                <input type = "text" value = "{{raceInput if raceInput}}" id = "raceInput" name = "raceInput" style = "display: none;"></input>
+            </div>
+        </form>
+    </body>
+    <script src = "{{url_for('static', filename='scripts.js')}}"></script>
+</html>

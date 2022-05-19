@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<link rel = "stylesheet" href = "{{ url_for('static',filename='styles/stylesheet.css') }}">
+
+<html>
+    <title>Build Orders</title>
+    <div class = "title">
+        Starcraft 2 Build Orders
+    </div>
+    <body>
+        <header>
+            <nav class = "navBar">
+                <button onClick = "homeBtn()" class = "navColumn">
+                    HOME
+                </button>
+                <button onClick = "replayBtn()" class = "navColumn">
+                    BUILD
+                </button>
+            </nav>
+        </header>
+        <hr class = "middle">
+        <div class = "mainRow">
+            <div class = "middle">
+                <div class = "postRow">
+                    {%for item in values%}
+                        <div class = "raceIcon postColumnLight">
+                        {%if item.race == 'Zerg' %}
+                            <img src = "{{url_for('static', filename='zergWhite.png')}}" width = "50" height = "50">
+                        {%elif item.race == 'Terran' %}
+                            <img src = "{{url_for('static', filename='terranWhite.png')}}" width = "50" height = "50">
+                        {%else%}
+                            <img src = "{{url_for('static', filename='protossWhite.png')}}" width = "50" height = "50">
+                        {%endif%}
+                        </div>
+                        <div class = "postDesc postColumnLight">
+                            <a class = "postDesc" href = "{{url_for('post', post_id=item._id)}}">{{item.title}}</a>
+                        </div>
+                        <div class = "postDesc postColumnLight">
+                            <label>Description:</label>
+                            <p>{{item.desc}}</p>
+                        </div>
+                    {%endfor%}
+                </div>
+            </div>
+        </div>
+        <script src = "{{url_for('static', filename='scripts.js')}}"></script>
+    </body>
+</html>

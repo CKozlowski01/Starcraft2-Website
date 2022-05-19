@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<link rel = "stylesheet" href = "{{ url_for('static',filename='styles/stylesheet.css') }}">
+
+<html>
+    <title>Build Orders</title>
+    <div class = "title">
+        Starcraft 2 Build Orders
+    </div>
+    <body>
+        <header>
+            <nav class = "navBar">
+                <form action = "/">
+                    <button name = "home" type = "submit" class = "navColumn" style = "width: 445px">
+                        HOME
+                    </button>
+                </form>
+                <form action = "/replays.html">
+                    <button name = "replays" type = "submit" class = "navColumn" style = "width: 445px">
+                        BUILD
+                    </button>
+                </form>
+            </nav>
+        </header>
+        <hr class = "middle">
+        <div class = "middle columnDiv">
+            <div class = "navColumn">
+                <h2>{{post.title}}</h2>
+                <h4>{{post.desc}}</h4>
+                {% if post.link == "" %}
+                <br>
+                {% else %}
+                <iframe frameborder = "0" width="420" height="315"src={{post.link}}></iframe>
+                {% endif %}
+            </div>
+            <div class = "navColumn">
+                <h2>Build Order</h2>
+                <p> {% autoescape false %}
+                        {{ post.build.replace(', ', '<br>')}}
+                    {% endautoescape %}
+                </p>
+            </div>
+        </div>
+        <script src = "{{url_for('static', filename='scripts.js')}}"></script>
+    </body>
+</html>
