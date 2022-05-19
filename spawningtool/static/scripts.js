@@ -10,6 +10,7 @@ var hide = document.getElementById("hide");
 var show = document.getElementById("show");
 var btn = document.getElementById("confirm");
 
+
 btn.onclick = function () {
   if (hide.style.display === "block") {
     hide.style.display = "none";
@@ -19,9 +20,9 @@ btn.onclick = function () {
     show.style.display = "none";
   }
 
-  var select = document.getElementById("sel");
-  selection = select.options[select.selectedIndex].value
-  console.log(selection);
+var select = document.getElementById("sel");
+selection = select.options[select.selectedIndex].value
+console.log(selection);
 
   fetch('../static/buildOrder.json')
 .then(response => {
@@ -37,14 +38,20 @@ btn.onclick = function () {
   for (var key in json){
     if(json[key].name == selection){
       raceValue = (json[key].pick_race)
+      inc = 0;
       for (i = 0; i < json[key].buildOrder.length; i++){
-      //for (i = 0; i < 20; i++){
         time = (json[key].buildOrder[i].time);
         unit = (json[key].buildOrder[i].name);
         supply = (json[key].buildOrder[i].supply);
-        hiddenBuild.value += time + " " + unit + " " + supply + ", ";
-        build.innerHTML = build.innerHTML + "<li>" + time + " " + unit + " " + supply + "</li>";
-        race.value = raceValue
+        if (unit != 'SCV' && unit != 'Drone' && unit != 'Probe' && inc < 30){
+          inc += 1;
+          hiddenBuild.value += time + " " + unit + " " + supply + ", ";
+          build.innerHTML = build.innerHTML + "<li>" + time + " " + unit + " " + supply + "</li>";
+          race.value = raceValue
+        }
+        else{
+          console.log('Worker Found')
+        }
       }
       //document.getElementById("order").innerHTML = build;
       //console.log(json[key].buildOrder.length);

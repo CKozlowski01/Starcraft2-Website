@@ -1,7 +1,5 @@
 from distutils.log import debug
-import os
-import json
-import re
+import os, json
 from werkzeug.utils import secure_filename
 from flask import Flask, flash, render_template, redirect, url_for, request, session
 from flask_sqlalchemy import SQLAlchemy
@@ -103,6 +101,8 @@ def replaysUpload():
         link = request.form["videoInput"]
         build = request.form["hiddenBuild"]
         race = request.form["raceInput"]
+        link = link.replace("watch?v=", "embed/")
+        link, sep, tail = link.partition('&ab_channel=')
         pst = posts(title, desc, link, build, race)
         db.session.add(pst)
         db.session.commit()
